@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
+use Mail;
 class ContactController extends Controller
 {
     //
@@ -53,5 +53,23 @@ class ContactController extends Controller
             return true;
         }
 
+    }
+    function sendEmail(){
+        $data=[
+            'form_name' =>' $request->form_name',
+            'form_email' =>  '$request->form_email',
+            'form_Phone' => '$request->form_Phone',
+            'form_Subject' => '$request->form_Subject',
+            'form_message' => '$request->form_message'
+        ];
+        Mail::send('emails.welcome', $data, function ($message) {
+            $message->to('mohammedakl6671@gmail.com' , 'LGS')->subject('Feedback');
+            $message->from('info@lgsolucion.com', 'LGS');
+
+        });
+        $message = 'We have <strong>successfully</strong> received your Message and will get Back to you as soon as possible.';
+        $status = "true";
+        $status_array = array( 'message' => $message, 'status' => $status);
+        return json_encode($status_array);
     }
 }

@@ -87,7 +87,7 @@
 
 
 
-
+<a href="{{url('/SendEmail')}}"> send email </a>
 
 
 <!-- Update Modal -->

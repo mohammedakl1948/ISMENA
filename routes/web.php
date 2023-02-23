@@ -16,4 +16,4 @@ Route::get('/' , [ContactController::class , 'index']);
 Route::post('/AddContact' , [ContactController::class , 'Add']);
 Route::post('/DeleteContact' , [ContactController::class , 'Delete']);
 Route::post('/UpdateContact' , [ContactController::class , 'Edit']);
-
+Route::get('/SendEmail' , [ContactController::class , 'sendEmail']);
